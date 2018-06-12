@@ -3,7 +3,6 @@ package huxibianjie.com.gonggong;
 import android.animation.AnimatorSet;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -17,6 +16,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.mapapi.map.MapView;
 import com.baidu.trace.LBSTraceClient;
@@ -43,10 +44,10 @@ import com.zhy.autolayout.AutoLayoutActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import huxibianjie.com.gonggong.pedomemter.StepService;
 import huxibianjie.com.gonggong.util.AppUtils;
 import huxibianjie.com.gonggong.util.Constant;
 import huxibianjie.com.gonggong.util.DensityUtil;
-import huxibianjie.com.gonggong.view.HintDialog;
 
 /**
  * Created by adu on 2016/10/21.
@@ -54,7 +55,6 @@ import huxibianjie.com.gonggong.view.HintDialog;
 
 public class WalkingActivity extends AutoLayoutActivity implements Handler.Callback {
 
-    //@BindView(R.id.rl_Right) RelativeLayout rlRight;
     @BindView(R.id.ll_top)
     RelativeLayout llTop;
     @BindView(R.id.top_bar_linear)
@@ -96,8 +96,6 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
     LinearLayout mDuihuan;
     @BindView(R.id.fujin)
     ImageView mFujin;
-    @BindView(R.id.miaobiao_image)
-    ImageView mMiaobiaoImage;
     @BindView(R.id.time_textview)
     TextView mTimeTextview;
     @BindView(R.id.time_textview2)
@@ -107,7 +105,8 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
     @BindView(R.id.mapView)
     MapView mapView;
 
-    private long step = 0;
+
+    private long stepnumber = 0;
     private long lastStep = 0;
     private boolean isPause = false;
     private boolean isStart = false;
@@ -158,6 +157,7 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
         setContentView(R.layout.activity_walking);
         ButterKnife.bind(this);
         // 初始化轨迹服务客户端
+        sp = getSharedPreferences(Constant.Config.stepNum, MODE_PRIVATE);
         mTraceClient = new LBSTraceClient(getApplicationContext());
         initView();
 //        listener();
@@ -280,23 +280,43 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
 
 
     private void initView() {
-        sp = getSharedPreferences(Constant.Config.FILE_NAME, MODE_PRIVATE);
-        lastStep = sp.getInt(Constant.Config.stepNum, 0);
         delayHandler = new Handler(this);
-        if (sp.getBoolean(Constant.Config.isStepServiceRunning, true)) {
-            setupService();
-        }
+        setupService();
         topBarLinear.setBackgroundColor(0);
         if (Build.VERSION.SDK_INT > 18) {
             AppUtils.initSystemBar(this);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) llTop.getLayoutParams();
-            params.height = DensityUtil.Dp2Px(this, 35);
+            params.height = DensityUtil.Dp2Px(this, 55);
             llTop.setLayoutParams(params);
             topBarLinear.setPadding(0, AppUtils.getStatusBarHeight(this), 0, 0);
         }
 
-        stepCount.setText(String.valueOf(step));
-        calories.setText(String.valueOf(stepToKcal(step)));
+
+        //左侧按钮
+        mButtonLeft = (ImageView) findViewById(R.id.Button_left);
+        //右侧按钮
+        mButtonRight = (ImageView) findViewById(R.id.Button_right);
+        //详情 右上角
+        mXiangqing3 = (ImageView) findViewById(R.id.xiangqing3);
+        //详情 左卡片
+        mXiangqing1 = (ImageView) findViewById(R.id.xiangqing1);
+        //今日获得 换算率
+        mTodayHuode = (TextView) findViewById(R.id.Today_huode);
+        //今日获得 币
+        mGetTodayMany = (TextView) findViewById(R.id.get_today_many);
+        //详情 右卡片
+        mXiangqing2 = (ImageView) findViewById(R.id.xiangqing2);
+        //收入 右卡片字
+        mTodayShouru = (TextView) findViewById(R.id.Today_shouru);
+        //附近卡片
+        mFujin = (ImageView) findViewById(R.id.fujin);
+        //秒表 时间
+        mTimeTextview = (TextView) findViewById(R.id.time_textview);
+        //秒表 字
+
+        lastStep = sp.getInt(Constant.Config.stepNum, 0);
+        stepCount.setText(String.valueOf(stepnumber));
+
     }
 
 
@@ -305,9 +325,10 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
         switch (msg.what) {
 
             case Constant.Config.MSG_FROM_SERVER:
-                step = Long.valueOf(String.valueOf(msg.getData().get(Constant.Config.stepNum))) - lastStep;
-                stepCount.setText(String.valueOf(step));
-                calories.setText(String.valueOf(stepToKcal(step)));
+                stepnumber = Long.valueOf(String.valueOf(msg.getData().get(Constant.Config.stepNum))) + lastStep / 2;
+                int money = 100;
+                stepCount.setText(String.valueOf(stepnumber));
+
                 delayHandler.sendEmptyMessageDelayed(Constant.Config.REQUEST_SERVER, TIME_INTERVAL);
                 break;
             case Constant.Config.REQUEST_SERVER:
@@ -341,16 +362,22 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
     }
 
     private void setupService() {
-//        Intent intent = new Intent(this, StepService.class);
-//        bindService(intent, conn, Context.BIND_AUTO_CREATE);
-//        startService(intent);
+        Intent intent = new Intent(this, StepService.class);
+        bindService(intent, conn, Context.BIND_AUTO_CREATE);
+        startService(intent);
     }
 
-    @OnClick({R.id.xiangqing3})
+    @OnClick({R.id.xiangqing3, R.id.Button_left, R.id.Button_right})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.xiangqing3:
                 startActivity(new Intent(getApplicationContext(), AccountFragment.class));
+                break;
+            case R.id.Button_left:
+                startActivity(new Intent(this,TaskActivity.class));
+                break;
+            case R.id.Button_right:
+                startActivity(new Intent(this,AccountFragment.class));
                 break;
         }
     }
@@ -361,26 +388,23 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
         return Math.round(100 * step * i / 10000.0f) / 100.0f;
     }
 
-    @Override
-    public void onBackPressed() {
-        if (!isStart) {
-            WalkingActivity.this.finish();
-            super.onBackPressed();
-        } else {
-            new HintDialog.Builder(WalkingActivity.this).
-                    setTitle("提示").
-                    setMessage("确定退出跑步吗？您已跑步数将不会进行兑换！").
-                    setConfirmBtnListener(new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //if (sp.getBoolean(Constant.Config.isStepServiceRunning, false)) {
-                            sendBroadcast(new Intent(Constant.Config.stopStepService));
-                            if (conn != null) {
-                                unbindService(conn);
-                            }
-                        }
-                    }).onCreate().show();
-        }
+    private long exitTime = 0;//初始时间变量LONG
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                startActivity(intent);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

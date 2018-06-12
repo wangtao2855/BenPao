@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/bg"
     android:orientation="vertical"
-    tools:context="com.home.runmining.com.adu.runing.TaskActivity">
+    tools:context="huxibianjie.com.gonggong.TaskActivity">
 
     <ImageView
         android:id="@+id/image1"

@@ -17,19 +17,5 @@
         >
 
 
-
-    <TextView
-        android:id="@+id/tv_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:gravity="center"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:textColor="@color/text1_white"
-        android:singleLine="true"
-        />
-
-
     </RelativeLayout>
 </LinearLayout>

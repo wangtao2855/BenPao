@@ -22,12 +22,15 @@ import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.home.runmining.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import huxibianjie.com.gonggong.WalkingActivity;
 import huxibianjie.com.gonggong.util.Constant;
+
 
 /**
  * 实现计步功能的前台服务
@@ -91,7 +94,7 @@ public class StepService extends Service {
 
         Log.i("xf", "onCreate()");
 
-//        updateNotification("今日步数：" + StepDetector.CURRENT_SETP + " 步");
+        updateNotification("今日步数：" + StepDetector.CURRENT_SETP + " 步");
     }
 
     private String getTodayDate() {
@@ -171,6 +174,7 @@ public class StepService extends Service {
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                 new Intent(this, WalkingActivity.class), 0);
         builder.setContentIntent(contentIntent);
+        builder.setSmallIcon(R.mipmap.ic_appicon);
         builder.setTicker("BasePedo");
         builder.setContentTitle("Running");
         //设置不可清除
@@ -181,8 +185,8 @@ public class StepService extends Service {
         startForeground(0, notification);
 
         //展示在通知栏
-//        nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        nm.notify(R.string.app_name, notification);
+        nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(R.string.app_name, notification);
     }
 
     @Override
@@ -259,7 +263,13 @@ public class StepService extends Service {
         int tempStep = StepDetector.CURRENT_SETP;
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt(Constant.Config.stepNum, tempStep);
+//        if (Constant.Config.Go_up==true){
+//            editor.putInt(Constant.Config.stepNum, 0);
+//            StepDetector.CURRENT_SETP = 0;
+//            Constant.Config.Go_up = false;
+//        }
         editor.commit();
+
         Log.v("xf", "sp.putInt: " + "---CURRENTDATE: " + CURRENTDATE + "---tempStep: " + tempStep);
     }
 

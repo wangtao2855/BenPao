@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_zhu"
+    android:background="@mipmap/bg"
     android:orientation="vertical">
 
     <include layout="@layout/top_bar" />
@@ -14,17 +14,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70px"
         android:alpha="0.4"
-        android:src="@mipmap/ba_buttonright" />
+        android:layout_toLeftOf="@+id/Calculation_Button"
+        android:src="@mipmap/arrow_left" />
     <!--右侧页面-->
     <ImageView
         android:id="@+id/Button_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/Calculation_Button"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70px"
         android:alpha="0.4"
-        android:src="@mipmap/ba_button_left" />
+        android:src="@mipmap/arrow_right" />
 
     <LinearLayout
         android:id="@+id/renwujiangli"
@@ -61,7 +66,14 @@
                 android:layout_height="700px"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/disk" />
+                android:src="@mipmap/circle_di" />
+            <!--能量-->
+            <ImageView
+                android:layout_width="700px"
+                android:layout_height="700px"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/circle_zhaun" />
             <!--步数-->
             <TextView
                 android:id="@+id/step_count"
@@ -112,7 +124,7 @@
                 android:layout_marginLeft="40px"
                 android:layout_marginRight="16px"
                 android:layout_weight="1"
-                android:background="#000000">
+                >
                 <!--左卡片详情-->
                 <ImageView
                     android:id="@+id/xiangqing1"
@@ -162,7 +174,7 @@
                 android:layout_marginLeft="16px"
                 android:layout_marginRight="40px"
                 android:layout_weight="1"
-                android:background="#000000">
+                >
                 <!--右卡片图标-->
                 <ImageView
                     android:id="@+id/xiangqing2"
@@ -209,11 +221,14 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:layout_marginTop="50px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/duihuan"
-        android:layout_marginTop="90px"
         android:orientation="vertical">
+
         <!--附近的人  地球图标-->
         <ImageView
             android:id="@+id/fujin"
@@ -221,20 +236,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:padding="20px"
-            android:src="@mipmap/fujin" />
+            android:src="@mipmap/icon_paihang" />
 
-        <ImageView
-            android:id="@+id/miaobiao_image"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/miaobiao" />
         <!--秒表-->
         <TextView
             android:id="@+id/time_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/miaobiao_image"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24px"
@@ -248,7 +256,7 @@
             android:layout_below="@+id/time_textview"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="34px"
-            android:text="秒表"
+            android:text="用时"
             android:textColor="#939292"
             android:textSize="34px" />
     </RelativeLayout>
@@ -256,13 +264,14 @@
     <Button
         android:id="@+id/Calculation_Button"
         android:layout_width="244px"
+        android:text="start"
         android:layout_height="248px"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="39px"
-        android:background="@mipmap/go_image"
+        android:background="@mipmap/btn_start"
         android:textColor="@color/white"
-        android:textSize="122px"
+        android:textSize="48px"
         android:textStyle="bold" />
 
     <com.baidu.mapapi.map.MapView

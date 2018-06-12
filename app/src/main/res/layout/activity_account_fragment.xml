@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/bg"
     android:orientation="vertical"
-    tools:context="com.adu.runing.AccountFragment">
+    tools:context="huxibianjie.com.gonggong.AccountFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
