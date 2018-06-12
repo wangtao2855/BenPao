@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="140px"
+    android:id="@+id/rl"
+    android:paddingLeft="30px"
+    android:background="#00D679"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="奔跑赚取"
+        android:textColor="#FFFFFF"
+        android:textSize="26px" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30px"
+        android:text="总价值\nDOGE"
+        android:textColor="#FFFFFF"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="154px"
+        android:layout_marginRight="20px"
+        android:text="121213131"
+        android:textColor="#FFF"
+        android:textSize="32px" />
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="386px"
+        android:layout_marginRight="20px"
+        android:text="1212\n总步数"
+        android:textColor="#FFF"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20px"
+        android:layout_toLeftOf="@id/tv2"
+        android:text="121213131"
+        android:textColor="#FFF"
+        android:textSize="36px" />
+    <View
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="139px"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#FFF"/>
+
+</RelativeLayout>
