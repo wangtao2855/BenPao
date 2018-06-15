@@ -67,9 +67,9 @@ public class MoneyAdapter extends RecyclerView.Adapter {
                 tv3.setVisibility(View.GONE);
                 tv4.setVisibility(View.GONE);
                 tv5.setVisibility(View.VISIBLE);
-                rl.setBackgroundColor(Color.parseColor("#00D679"));
+                rl.setBackgroundColor(Color.parseColor("#01c270"));
             } else {
-                rl.setBackgroundColor(Color.parseColor("#15000000"));
+                rl.setBackgroundColor(Color.parseColor("#32424d"));
                 tv3.setVisibility(View.VISIBLE);
                 tv4.setVisibility(View.VISIBLE);
                 tv5.setVisibility(View.GONE);

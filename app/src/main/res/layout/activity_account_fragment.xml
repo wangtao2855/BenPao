@@ -8,11 +8,12 @@
     android:orientation="vertical"
     tools:context="huxibianjie.com.gonggong.AccountFragment">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <include layout="@layout/top_bar"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -20,21 +21,36 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="25px"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:src="@mipmap/icon_bacl_left" />
 
-            <ImageView
+            <huxibianjie.com.gonggong.util.RoundImageView
                 android:layout_width="144px"
                 android:layout_height="144px"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="59px"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imageView" />
+            <ImageView
+                android:layout_width="156px"
+                android:layout_height="156px"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="59px"
+                android:background="@drawable/head_bg"
+                 />
 
             <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="80px"
-                android:layout_marginTop="92px"
+                android:layout_alignBottom="@+id/imageView"
+                android:layout_marginBottom="9dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp"
+                android:layout_toEndOf="@+id/imageView"
+                android:layout_toRightOf="@+id/imageView"
                 android:background="@drawable/circle_ret_orage_sel_gary"
                 android:drawableLeft="@mipmap/icon_editor"
                 android:padding="5dp"
@@ -52,13 +68,15 @@
                 android:textSize="30px" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_width="1000px"
                 android:layout_height="412px"
                 android:layout_marginLeft="20px"
                 android:layout_marginRight="20px"
                 android:layout_marginTop="310px"
                 android:background="@drawable/circle_ret_orage_sel_gary"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:id="@+id/linearLayout2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -197,22 +215,26 @@
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
+            android:padding="30px"
             android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
+            android:layout_width="1000px"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
-            android:layout_marginTop="30px"
+            android:layout_marginTop="40px"
             android:nestedScrollingEnabled="false"
             android:background="@drawable/circle_ret_orage_sel_gary" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView1"
-            android:layout_width="match_parent"
+            android:padding="30px"
+            android:layout_width="1000px"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
-            android:layout_marginTop="30px"
+            android:layout_marginTop="40px"
             android:nestedScrollingEnabled="false"
             android:background="@drawable/circle_ret_orage_sel_gary" />
     </LinearLayout>

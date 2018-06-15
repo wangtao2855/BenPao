@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg"
+    android:layout_margin="-5dp"
     android:orientation="vertical">
 
     <include layout="@layout/top_bar" />
@@ -38,13 +39,76 @@
         android:layout_marginTop="35px"
         android:alpha="0.9"
         android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+        <RelativeLayout
             android:layout_marginTop="20dp"
-            android:src="@mipmap/top_image" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/line_top1"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:src="@mipmap/top_image" >
+            <TextView
+                android:text="DVE"
+                android:textSize="48px"
+                android:textStyle="bold"
+                android:textColor="#0FFB6D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:background="#0ffb6d"
+                android:layout_marginTop="10px"
+                android:layout_width="90px"
+                android:layout_height="10px"/>
+
+        </LinearLayout>
+
+            <LinearLayout
+            android:id="@+id/line_top2"
+            android:layout_toRightOf="@+id/line_top1"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:layout_marginLeft="120px"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:src="@mipmap/top_image" >
+            <TextView
+                android:text="BTC"
+                android:textSize="48px"
+                android:textStyle="bold"
+                android:textColor="#5E666E"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+            <LinearLayout
+            android:layout_toRightOf="@+id/line_top2"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="130px"
+            android:orientation="vertical"
+            android:src="@mipmap/top_image" >
+            <TextView
+                android:text="BBC"
+                android:textSize="48px"
+                android:textStyle="bold"
+                android:textColor="#5E666E"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,7 +123,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="30px"
                 android:layout_marginTop="12px"
-                android:src="@mipmap/xaingqing" />
+                android:src="@mipmap/icon_explain_power" />
             <!--圆盘-->
             <ImageView
                 android:layout_width="700px"
@@ -115,25 +179,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearlayou_top"
-            android:layout_marginTop="76px"
+            android:layout_marginTop="20px"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="270px"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="40px"
                 android:layout_marginRight="16px"
-                android:layout_weight="1"
-                >
-                <!--左卡片详情-->
-                <ImageView
-                    android:id="@+id/xiangqing1"
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="30px"
-                    android:layout_marginTop="12px"
-                    android:src="@mipmap/xaingqing" />
+                android:layout_weight="1">
+
                 <!--币的兑换率-->
                 <TextView
                     android:id="@+id/Today_huode"
@@ -141,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="58px"
-                    android:text="获币×1.5646"
+                    android:text="获币×0.9998"
                     android:textColor="#939292"
                     android:textSize="38px" />
                 <!-- 今日获得币数-->
@@ -153,18 +208,8 @@
                     android:layout_marginTop="130px"
                     android:text="1000"
                     android:textColor="@color/white"
-                    android:textSize="110px" />
+                    android:textSize="90px" />
                 <!-- lbsc 字 -->
-                <TextView
-                    android:id="@+id/lbsc_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/get_today_many"
-                    android:layout_toEndOf="@+id/get_today_many"
-                    android:text="  lbsc"
-                    android:textColor="@color/white"
-                    android:textSize="38px"
-                    tools:ignore="RtlCompat" />
 
             </RelativeLayout>
 
@@ -173,17 +218,8 @@
                 android:layout_height="270px"
                 android:layout_marginLeft="16px"
                 android:layout_marginRight="40px"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
                 <!--右卡片图标-->
-                <ImageView
-                    android:id="@+id/xiangqing2"
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginTop="12px"
-                    android:src="@mipmap/xaingqing" />
                 <!--收入字-->
                 <TextView
                     android:id="@+id/Today_shouru"
@@ -203,25 +239,15 @@
                     android:layout_marginTop="130px"
                     android:text="1000"
                     android:textColor="@color/white"
-                    android:textSize="110px" />
+                    android:textSize="90px" />
                 <!--= $ 字-->
-                <TextView
-                    android:id="@+id/yang_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/calories"
-                    android:layout_toEndOf="@+id/calories"
-                    android:text=" ≈￥"
-                    android:textColor="@color/white"
-                    android:textSize="38px"
-                    tools:ignore="RtlCompat" />
 
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_marginTop="50px"
+        android:layout_marginTop="70px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -237,17 +263,16 @@
             android:layout_alignParentRight="true"
             android:padding="20px"
             android:src="@mipmap/icon_paihang" />
-
         <!--秒表-->
-        <TextView
+        <Chronometer
             android:id="@+id/time_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:format="00:00:00"
+            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="24px"
-            android:text="00:00:00"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+           />
         <!--秒表字-->
         <TextView
             android:id="@+id/time_textview2"
@@ -280,4 +305,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
          />
+
+    <TextView
+        android:id="@+id/lbsc_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/duihuan"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_toLeftOf="@+id/Calculation_Button"
+        android:layout_toStartOf="@+id/Calculation_Button"
+        android:text="DVE"
+        android:textColor="@color/white"
+        android:textSize="38px"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/yang_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Button_right"
+        android:layout_alignStart="@+id/Button_right"
+        android:layout_below="@+id/duihuan"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:text=" ≈￥"
+        android:textColor="@color/white"
+        android:textSize="38px"
+        tools:ignore="RtlCompat" />
+
+    <ImageView
+        android:id="@+id/xiangqing2"
+        android:layout_width="50px"
+        android:layout_height="50px"
+
+        android:layout_alignBottom="@+id/yang_text"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:src="@mipmap/icon_explain_power" />
+    <!--左卡片详情-->
+    <ImageView
+        android:id="@+id/xiangqing1"
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:layout_alignBottom="@+id/lbsc_text"
+        android:layout_alignLeft="@+id/Calculation_Button"
+        android:layout_alignStart="@+id/Calculation_Button"
+        android:src="@mipmap/icon_explain_power" />
 </RelativeLayout>

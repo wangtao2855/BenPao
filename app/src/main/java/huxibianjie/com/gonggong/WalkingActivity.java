@@ -24,6 +24,7 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.PowerManager;
 import android.os.RemoteException;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.Display;
@@ -32,6 +33,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -128,7 +130,7 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
     @BindView(R.id.fujin)
     ImageView mFujin;
     @BindView(R.id.time_textview)
-    TextView mTimeTextview;
+    Chronometer timer;
     @BindView(R.id.time_textview2)
     TextView mTimeTextview2;
     @BindView(R.id.Calculation_Button)
@@ -254,6 +256,7 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
     private int mCurrentDirection = 0;
     private PowerManager powerManager;
     private SensorManager mSensorManager;
+    private static  int Effectivevalue = 0;
 
     private void initMapUtil() {
         initListener();
@@ -393,7 +396,6 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
 
             @Override
             public void onDistanceCallback(DistanceResponse response) {
-                ToastUtils.showToastBottom(WalkingActivity.this, "里程：" + (int) response.getDistance() + "米");
                 super.onDistanceCallback(response);
             }
         };
@@ -592,8 +594,6 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
         mTodayShouru = (TextView) findViewById(R.id.Today_shouru);
         //附近卡片
         mFujin = (ImageView) findViewById(R.id.fujin);
-        //秒表 时间
-        mTimeTextview = (TextView) findViewById(R.id.time_textview);
         //秒表 字
 
         lastStep = sp.getInt(Constant.Config.stepNum, 0);
@@ -601,16 +601,15 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
 
     }
 
-
     @Override
     public boolean handleMessage(Message msg) {
         switch (msg.what) {
 
             case Constant.Config.MSG_FROM_SERVER:
-                stepnumber = Long.valueOf(String.valueOf(msg.getData().get(Constant.Config.stepNum))) + lastStep / 2;
-                int money = 100;
-                stepCount.setText(String.valueOf(stepnumber));
-
+                if (isclick==true){
+                    stepnumber = Long.valueOf(String.valueOf(msg.getData().get(Constant.Config.stepNum))) + lastStep / 2;
+                    stepCount.setText(String.valueOf(stepnumber));
+                }
                 delayHandler.sendEmptyMessageDelayed(Constant.Config.REQUEST_SERVER, TIME_INTERVAL);
                 break;
             case Constant.Config.REQUEST_SERVER:
@@ -675,14 +674,17 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
 
                 if (isclick==false){
                     mCalculationButton.setBackgroundResource(R.mipmap.btn_stop);
+                    timer.setBase(SystemClock.elapsedRealtime());//计时器清零
+                    int hour = (int) ((SystemClock.elapsedRealtime() - timer.getBase()) / 1000 / 60);
+                    timer.setFormat("0"+String.valueOf(hour)+":%s");
+                    timer.start();
                     mCalculationButton.setText("STOP");
                     isclick = true;
                 }else if (isclick==true){
                     mCalculationButton.setBackgroundResource(R.mipmap.btn_start);
                     mCalculationButton.setText("START");
-
+                    timer.stop();
                     isclick =false;
-
                 }
                 setupService(isclick);
                 break;
