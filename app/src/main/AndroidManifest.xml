@@ -31,7 +31,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -51,8 +50,6 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -98,15 +95,17 @@
         <service android:name="huxibianjie.com.gonggong.pedomemter.StepService" />
 
         <activity android:name="huxibianjie.com.gonggong.TaskActivity" />
-        <activity android:name="huxibianjie.com.gonggong.AccountFragment"></activity>
-        <activity android:name="huxibianjie.com.gonggong.WalkingActivity"></activity>
-        <activity android:name="huxibianjie.com.gonggong.DetailsActivity"></activity>
+        <activity android:name="huxibianjie.com.gonggong.AccountFragment" />
+        <activity android:name="huxibianjie.com.gonggong.WalkingActivity" />
+        <activity android:name="huxibianjie.com.gonggong.DetailsActivity" />
 
         <service
             android:name="com.baidu.trace.LBSTraceService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />
+
+        <activity android:name="huxibianjie.com.gonggong.SettlementActivity"></activity>
     </application>
 
 </manifest>

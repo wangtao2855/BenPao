@@ -256,7 +256,8 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
     private int mCurrentDirection = 0;
     private PowerManager powerManager;
     private SensorManager mSensorManager;
-    private static  int Effectivevalue = 0;
+    private static  float Effective_value;
+    private static  int mileage_value;
 
     private void initMapUtil() {
         initListener();
@@ -396,6 +397,7 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
 
             @Override
             public void onDistanceCallback(DistanceResponse response) {
+                mileage_value = (int) response.getDistance();
                 super.onDistanceCallback(response);
             }
         };
@@ -685,6 +687,23 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
                     mCalculationButton.setText("START");
                     timer.stop();
                     isclick =false;
+                    //得到能量传给结束页面，计算今日所得货币数量
+                    if(!(stepnumber<500)){
+                            if(mileage_value>250){
+                                Effective_value = (float) ((stepnumber/10000) * 1.0 + Effective_value);
+                            }else {
+                                Effective_value = (float) ((stepnumber/10000) * 0.2 + Effective_value);
+                            }
+                    }else{
+                        Toast.makeText(this, "你可以再多走走", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Intent intent = new Intent(this,SettlementActivity.class);
+                    intent.putExtra("Effective_value",Effective_value);
+                    intent.putExtra("StepNumber",stepnumber);
+                    startActivity(intent);
+
+                    Effective_value = 0;
                 }
                 setupService(isclick);
                 break;

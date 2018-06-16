@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.5"
+    android:background="#010205"
+    tools:context="huxibianjie.com.gonggong.SettlementActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结算"
+        android:textSize="48px"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="87dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="能量："
+        android:textColor="@color/white"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="252dp" />
+
+    <ImageView
+        android:id="@+id/xiangqing4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_explain_power"
+        tools:layout_editor_absoluteX="354dp"
+        tools:layout_editor_absoluteY="165dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今日步数"
+        android:textColor="#00fba6"
+        android:textSize="110px"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="142dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="步"
+        tools:layout_editor_absoluteX="308dp"
+        tools:layout_editor_absoluteY="180dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/Effective_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_ret_orage_sel_gary"
+        android:text="能量"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="252dp" />
+
+    <TextView
+        android:id="@+id/git_today_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_ret_orage_sel_gary"
+        android:text="今日可获得"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="252dp" />
+
+    <TextView
+        android:id="@+id/get_today_many"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_ret_orage_sel_gary"
+        android:text="今日获得"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="313dp"
+        tools:layout_editor_absoluteY="252dp" />
+
+    <TextView
+        android:id="@+id/this_git_stepnumber_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今日可获得步数"
+        android:textColor="#00fba6"
+        android:textSize="110px"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="355dp" />
+
+    <Button
+        android:id="@+id/game_over"
+        android:layout_width="720px"
+        android:layout_height="90px"
+        android:background="#23ef97"
+        android:gravity="center"
+        android:text="完成"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="585dp"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>
