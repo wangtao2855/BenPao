@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,30 +26,30 @@
                 android:src="@mipmap/icon_bacl_left" />
 
             <huxibianjie.com.gonggong.util.RoundImageView
-                android:layout_width="144px"
-                android:layout_height="144px"
+                android:layout_width="282px"
+                android:layout_height="282px"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="59px"
-                android:src="@mipmap/ic_launcher"
+                android:layout_marginTop="180px"
+                android:src="@mipmap/none"
                 android:id="@+id/imageView" />
             <ImageView
-                android:layout_width="156px"
-                android:layout_height="156px"
+                android:layout_width="287px"
+                android:layout_height="287px"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="59px"
+                android:layout_marginTop="180px"
                 android:background="@drawable/head_bg"
-                 />
+                android:id="@+id/imageView2" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imageView"
-                android:layout_marginBottom="9dp"
-                android:layout_marginLeft="45dp"
-                android:layout_marginStart="45dp"
-                android:layout_toEndOf="@+id/imageView"
-                android:layout_toRightOf="@+id/imageView"
+                android:layout_alignEnd="@+id/linearLayout2"
+                android:layout_alignRight="@+id/linearLayout2"
+                android:layout_alignTop="@+id/imageView2"
+                android:layout_marginEnd="31dp"
+                android:layout_marginRight="31dp"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/circle_ret_orage_sel_gary"
                 android:drawableLeft="@mipmap/icon_editor"
                 android:padding="5dp"
@@ -59,11 +58,13 @@
                 android:textSize="22px" />
 
             <TextView
+                android:id="@+id/tv_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView2"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="247px"
-                android:text="xiaotao"
+                android:layout_marginTop="14dp"
+                android:text="登入/注册"
                 android:textColor="#FFFFFF"
                 android:textSize="30px" />
 
@@ -73,7 +74,7 @@
                 android:layout_height="412px"
                 android:layout_marginLeft="20px"
                 android:layout_marginRight="20px"
-                android:layout_marginTop="310px"
+                android:layout_marginTop="676px"
                 android:background="@drawable/circle_ret_orage_sel_gary"
                 android:orientation="vertical"
                 android:id="@+id/linearLayout2">
@@ -215,7 +216,6 @@
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:padding="30px"
             android:id="@+id/recyclerView"
             android:layout_width="1000px"
             android:layout_height="wrap_content"
@@ -228,7 +228,6 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView1"
-            android:padding="30px"
             android:layout_width="1000px"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -237,6 +236,78 @@
             android:layout_marginTop="40px"
             android:nestedScrollingEnabled="false"
             android:background="@drawable/circle_ret_orage_sel_gary" />
+        <TextView
+            android:layout_marginBottom="76px"
+            android:layout_marginTop="66px"
+            android:text="任务奖励"
+            android:textSize="50px"
+            android:textColor="@color/white"
+            android:layout_marginLeft="40px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginLeft="40px"
+                    android:layout_gravity="center_vertical"
+                    android:text=" 邀请好友"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:background="@mipmap/yaoqinghaoyou"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="40px"
+                    android:text=" 分享"
+                    android:textColor="@color/white"
+                    android:background="@mipmap/yaoqinghaoyou"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:text=" 关注"
+                    android:textColor="@color/white"
+                    android:background="@mipmap/yaoqinghaoyou"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="66px"
+            android:layout_marginBottom="66px"
+            android:layout_marginLeft="40px"
+            android:layout_width="1000px"
+            android:background="@drawable/zhanghu_foot_bg"
+            android:layout_height="156px">
+            <ImageView
+                android:src="@mipmap/icon_set"
+                android:layout_marginLeft="40px"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="100px"
+            android:text="设置"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/icon_arrow"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40px"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </LinearLayout>
 
 </ScrollView>

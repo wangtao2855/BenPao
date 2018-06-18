@@ -61,11 +61,19 @@
         android:textColor="#FFF"
         android:textSize="36px" />
     <View
+        android:id="@+id/view_button"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="139px"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#FFF"/>
-
+    <ImageView
+        android:id="@+id/im"
+        android:src="@mipmap/icon_unfold"
+        android:onClick="foot_item"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

@@ -1,10 +1,11 @@
 package huxibianjie.com.gonggong;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import com.home.runmining.R;
 
-public class DetailsActivity extends AppCompatActivity {
+import com.home.runmining.R;
+import com.zhy.autolayout.AutoLayoutActivity;
+
+public class DetailsActivity extends AutoLayoutActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

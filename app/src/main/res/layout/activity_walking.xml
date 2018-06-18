@@ -50,7 +50,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:orientation="vertical"
-            android:src="@mipmap/top_image" >
+            >
             <TextView
                 android:text="DVE"
                 android:textSize="48px"
@@ -75,8 +75,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            android:src="@mipmap/top_image" >
+            android:orientation="vertical">
             <TextView
                 android:text="BTC"
                 android:textSize="48px"
@@ -96,7 +95,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="130px"
             android:orientation="vertical"
-            android:src="@mipmap/top_image" >
+            >
             <TextView
                 android:text="BBC"
                 android:textSize="48px"
@@ -280,7 +279,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/time_textview"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="34px"
+            android:layout_marginTop="60px"
             android:text="用时"
             android:textColor="#939292"
             android:textSize="34px" />

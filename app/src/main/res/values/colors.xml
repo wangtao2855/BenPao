@@ -28,4 +28,7 @@
 
     <color name="circle_red_cd3a33">#cd3a33</color>
     <color name="circle_bule_bbd4e7">#bbd4e7</color>
+    <color name="item_hader_bg">#01c270</color>
+    <color name="item_foot_bg">#32424d</color>
+
 </resources>
