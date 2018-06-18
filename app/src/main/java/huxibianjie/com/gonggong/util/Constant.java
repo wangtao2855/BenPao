@@ -7,6 +7,8 @@ package huxibianjie.com.gonggong.util;
 public class Constant {
 
 
+    public static final String USER = "";
+
     public static final class Config {
 
         public static final int MSG_FROM_CLIENT = 0;

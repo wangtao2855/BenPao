@@ -27,6 +27,7 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
@@ -79,7 +80,6 @@ import huxibianjie.com.gonggong.util.Constant;
 import huxibianjie.com.gonggong.util.CurrentLocation;
 import huxibianjie.com.gonggong.util.DensityUtil;
 import huxibianjie.com.gonggong.util.MapUtil;
-import huxibianjie.com.gonggong.util.ToastUtils;
 import huxibianjie.com.gonggong.util.TrackReceiver;
 
 /**
@@ -137,6 +137,8 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
     Button mCalculationButton;
     @BindView(R.id.mapView)
     MapView mapView;
+    @BindView(R.id.line_tab)
+    TabLayout tabLayout;
 
 
     private long stepnumber = 0;
@@ -147,10 +149,6 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
     private long thisTime = 0;
     private SharedPreferences sp;
     public boolean isclick = false;
-
-    public boolean isIsclick() {
-        return isclick;
-    }
 
     //循环获取当前时刻的步数中间的间隔时间
     private long TIME_INTERVAL = 500;
@@ -243,10 +241,17 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_OK);
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
         iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
+        initTabLayout();
         mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
         BitmapUtil.init();
         initMapUtil();
+    }
+
+    private void initTabLayout() {
+        tabLayout.addTab(tabLayout.newTab().setText("DVE"));
+        tabLayout.addTab(tabLayout.newTab().setText("BTC"));
+        tabLayout.addTab(tabLayout.newTab().setText("BBC"));
     }
 
     /**
@@ -356,7 +361,7 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
                     }
                     trackPoints.add(currentLatLng);
                     endTime = CommonUtil.getCurrentTime();
-                    ToastUtils.showToastBottom(WalkingActivity.this, "差值：" + (endTime - startTime));
+                    //ToastUtils.showToastBottom(WalkingActivity.this, "差值：" + (endTime - startTime));
                     queryHistoryTrack();
                 } catch (Exception x) {
                     x.printStackTrace();
@@ -588,8 +593,6 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
         mXiangqing1 = (ImageView) findViewById(R.id.xiangqing1);
         //今日获得 换算率
         mTodayHuode = (TextView) findViewById(R.id.Today_huode);
-        //今日获得 币
-        mGetTodayMany = (TextView) findViewById(R.id.get_today_many);
         //详情 右卡片
         mXiangqing2 = (ImageView) findViewById(R.id.xiangqing2);
         //收入 右卡片字
@@ -600,6 +603,9 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
 
         lastStep = sp.getInt(Constant.Config.stepNum, 0);
         stepCount.setText(String.valueOf(stepnumber));
+        mGetTodayMany.setText(String.valueOf(stepToKcal(stepnumber)));
+        calories.setText(String.valueOf(stepToKca(stepnumber)));
+
 
     }
 
@@ -611,6 +617,9 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
                 if (isclick==true){
                     stepnumber = Long.valueOf(String.valueOf(msg.getData().get(Constant.Config.stepNum))) + lastStep / 2;
                     stepCount.setText(String.valueOf(stepnumber));
+                    mGetTodayMany.setText(String.valueOf(stepToKcal(stepnumber)));
+                    calories.setText(String.valueOf(stepToKca(stepnumber)));
+
                 }
                 delayHandler.sendEmptyMessageDelayed(Constant.Config.REQUEST_SERVER, TIME_INTERVAL);
                 break;
@@ -666,7 +675,7 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
                 startActivity(new Intent(this, TaskActivity.class));
                 break;
             case R.id.Button_right:
-                startActivity(new Intent(this, AccountFragment.class));
+                startActivity(new Intent(this, AccountActivity.class));
                 break;
             case R.id.Calculation_Button:
                 trackApp.mClient.startTrace(trackApp.mTrace, traceListener);//开始服务
@@ -683,22 +692,25 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
                     mCalculationButton.setText("STOP");
                     isclick = true;
                 }else if (isclick==true){
-                    mCalculationButton.setBackgroundResource(R.mipmap.btn_start);
-                    mCalculationButton.setText("START");
-                    timer.stop();
-                    isclick =false;
+
                     //得到能量传给结束页面，计算今日所得货币数量
-                    if(!(stepnumber<500)){
-                            if(mileage_value>250){
-                                Effective_value = (float) ((stepnumber/10000) * 1.0 + Effective_value);
-                            }else {
-                                Effective_value = (float) ((stepnumber/10000) * 0.2 + Effective_value);
-                            }
+                    //满足条件就能跳转
+
+                    if(!(stepnumber<150) && mileage_value != 0){
+                        if(stepnumber/mileage_value>1.2&&stepnumber/mileage_value<3.1){
+                            Effective_value=1;
+                        }else {
+                            Effective_value=0.1f;
+                        }
                     }else{
                         Toast.makeText(this, "你可以再多走走", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Intent intent = new Intent(this,SettlementActivity.class);
+                    mCalculationButton.setBackgroundResource(R.mipmap.btn_start);
+                    mCalculationButton.setText("START");
+                    timer.stop();
+                    isclick =false;
+                    Intent intent = new Intent(this,CloseActivity.class);
                     intent.putExtra("Effective_value",Effective_value);
                     intent.putExtra("StepNumber",stepnumber);
                     startActivity(intent);
@@ -710,9 +722,14 @@ public class WalkingActivity extends AutoLayoutActivity implements Handler.Callb
         }
     }
 
-    //步数与热量的交
+    //步数与币的交
     private float stepToKcal(float step) {
-        float i = 388.5f;
+        float i =98.0f;
+        return Math.round(100 * step * i / 10000.0f) / 100.0f;
+    }
+    //步数与钱的交
+    private float stepToKca(float step) {
+        float i =9.8f;
         return Math.round(100 * step * i / 10000.0f) / 100.0f;
     }
 

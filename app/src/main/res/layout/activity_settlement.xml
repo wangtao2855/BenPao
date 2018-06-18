@@ -1,111 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="0.5"
-    android:background="#010205"
-    tools:context="huxibianjie.com.gonggong.SettlementActivity">
+    android:background="#000"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="huxibianjie.com.gonggong.WalkingActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="67dp"
         android:text="结算"
-        android:textSize="48px"
-        tools:layout_editor_absoluteX="187dp"
-        tools:layout_editor_absoluteY="87dp"
-        tools:ignore="MissingConstraints" />
+        android:textColor="#ffffffff"
+        android:textSize="21sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100000"
+            android:textColor="#ff00fba5"
+            android:textSize="53sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="步"
+            android:textColor="#ffffffff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="能量 X"
+            android:textColor="#ff5a7e7f"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/shape_colse" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  =  "
+            android:textColor="#ff5a7e7f" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="33dp"
+            android:background="@drawable/shape_colse" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="能量："
-        android:textColor="@color/white"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="252dp" />
+        android:layout_marginTop="43dp"
+        android:text="本次获得"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
 
-    <ImageView
-        android:id="@+id/xiangqing4"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/icon_explain_power"
-        tools:layout_editor_absoluteX="354dp"
-        tools:layout_editor_absoluteY="165dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginTop="21dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100000"
+            android:textColor="#ffffffff"
+            android:textSize="53sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="币"
+            android:textColor="#ffffffff"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="今日步数"
-        android:textColor="#00fba6"
-        android:textSize="110px"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="142dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="步"
-        tools:layout_editor_absoluteX="308dp"
-        tools:layout_editor_absoluteY="180dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/Effective_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle_ret_orage_sel_gary"
-        android:text="能量"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="104dp"
-        tools:layout_editor_absoluteY="252dp" />
-
-    <TextView
-        android:id="@+id/git_today_max"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle_ret_orage_sel_gary"
-        android:text="今日可获得"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="252dp" />
-
-    <TextView
-        android:id="@+id/get_today_many"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle_ret_orage_sel_gary"
-        android:text="今日获得"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="313dp"
-        tools:layout_editor_absoluteY="252dp" />
-
-    <TextView
-        android:id="@+id/this_git_stepnumber_max"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="今日可获得步数"
-        android:textColor="#00fba6"
-        android:textSize="110px"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="355dp" />
-
-    <Button
-        android:id="@+id/game_over"
-        android:layout_width="720px"
-        android:layout_height="90px"
-        android:background="#23ef97"
+        android:id="@+id/btn_ac"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginRight="49dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/dialog_login_bt"
         android:gravity="center"
         android:text="完成"
-        android:textColor="@color/white"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="585dp"
-        tools:ignore="MissingConstraints" />
-
-</android.support.constraint.ConstraintLayout>
+        android:textColor="#ffffffff"
+        android:textSize="17sp" />
+</LinearLayout>

@@ -95,7 +95,7 @@
         <service android:name="huxibianjie.com.gonggong.pedomemter.StepService" />
 
         <activity android:name="huxibianjie.com.gonggong.TaskActivity" />
-        <activity android:name="huxibianjie.com.gonggong.AccountFragment" />
+        <activity android:name="huxibianjie.com.gonggong.AccountActivity" />
         <activity android:name="huxibianjie.com.gonggong.WalkingActivity" />
         <activity android:name="huxibianjie.com.gonggong.DetailsActivity" />
 
@@ -105,7 +105,7 @@
             android:exported="true"
             android:process=":remote" />
 
-        <activity android:name="huxibianjie.com.gonggong.SettlementActivity"></activity>
+        <activity android:name="huxibianjie.com.gonggong.CloseActivity"></activity>
     </application>
 
 </manifest>

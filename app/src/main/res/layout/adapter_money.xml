@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="140px"
@@ -12,55 +11,128 @@
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:text="奔跑赚取"
         android:textColor="#FFFFFF"
-        android:textSize="26px" />
+        android:textSize="40px" />
+
+
+
+
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/BTC_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="30px"
-        android:text="总价值\nDOGE"
-        android:textColor="#FFFFFF"
-        android:textSize="20px" />
+        android:text="BTC"
+        android:layout_marginLeft="30px"
+        android:textColor="@color/white"
+        android:textSize="40px"
+        android:textStyle="bold" />
 
+
+
+    <LinearLayout
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/rl1"
+        android:layout_marginTop="30px"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总价值"
+            android:textColor="#FFFFFF"
+            android:textSize="32px" />
+
+        <TextView
+            android:id="@+id/tv21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/zongshichang"
+            android:layout_alignRight="@+id/zongshichang"
+            android:layout_below="@+id/tv2"
+            android:text="≈DOGE"
+            android:textColor="#FFFFFF"
+            android:textSize="26px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="30px"
+        android:id="@+id/r12"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00:13"
+            android:textColor="#FFFFFF"
+            android:textSize="32px" />
+
+        <TextView
+            android:id="@+id/zongshichang"
+            android:textSize="26px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl1"
+            android:layout_toEndOf="@+id/tv5"
+            android:textColor="#46576A"
+            android:layout_toRightOf="@+id/tv5"
+            android:text="总时长" />
+    </LinearLayout>
     <TextView
         android:id="@+id/tv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="154px"
-        android:layout_marginRight="20px"
+        android:layout_marginLeft="270px"
         android:text="121213131"
         android:textColor="#FFF"
         android:textSize="32px" />
-
-    <TextView
-        android:id="@+id/tv4"
+    <LinearLayout
+        android:layout_marginRight="360px"
+        android:layout_marginTop="30px"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="386px"
-        android:layout_marginRight="20px"
-        android:text="1212\n总步数"
-        android:textColor="#FFF"
-        android:textSize="20px" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1212"
+            android:textColor="#FFF"
+            android:textSize="32px" />
+        <TextView
+            android:id="@+id/zongbushu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总步数"
+            android:textColor="#46576A"
+            android:textSize="26px" />
+    </LinearLayout>
+
 
     <TextView
+        android:layout_centerVertical="true"
         android:id="@+id/tv5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="20px"
-        android:layout_toLeftOf="@id/tv2"
+        android:layout_marginRight="250px"
+        android:layout_alignParentRight="true"
         android:text="121213131"
         android:textColor="#FFF"
-        android:textSize="36px" />
+        android:textSize="42px" />
     <View
+        android:id="@+id/view_button"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="139px"
@@ -68,4 +140,13 @@
         android:layout_height="1px"
         android:background="#FFF"/>
 
+
+    <ImageView
+        android:id="@+id/im"
+        android:src="@mipmap/icon_unfold"
+        android:onClick="foot_item"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

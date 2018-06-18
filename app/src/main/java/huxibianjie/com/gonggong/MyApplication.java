@@ -21,8 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import huxibianjie.com.gonggong.bean.LiginBtnBean;
 import huxibianjie.com.gonggong.util.CommonUtil;
 import huxibianjie.com.gonggong.util.NetUtil;
+import huxibianjie.com.gonggong.util.SpUtil;
 
 /**
  * Created by Administrator on 2016/10/21.
@@ -31,6 +33,7 @@ import huxibianjie.com.gonggong.util.NetUtil;
 public class MyApplication extends Application {
 
     private static Context context;
+    public static LiginBtnBean.UserInfoBean user;
 
     private AtomicInteger mSequenceGenerator = new AtomicInteger();
 
@@ -77,12 +80,12 @@ public class MyApplication extends Application {
 
         SDKInitializer.initialize(context);
         getScreenSize();
+        initPrefs();
         mClient = new LBSTraceClient(context);
         mTrace = new Trace(serviceId, entityName);
 
         trackConf = getSharedPreferences("track_conf", MODE_PRIVATE);
         locRequest = new LocRequest(serviceId);
-
         mClient.setOnCustomAttributeListener(new OnCustomAttributeListener() {
             @Override
             public Map<String, String> onTrackAttributeCallback() {
@@ -164,6 +167,13 @@ public class MyApplication extends Application {
         request.setTag(getTag());
         request.setServiceId(serviceId);
     }
+    /**
+     * 初始化SharedPreference
+     */
+    protected void initPrefs() {
+        SpUtil.init(getApplicationContext(), getPackageName() + "_preference", Context.MODE_MULTI_PROCESS);
+    }
+
 
     /**
      * 获取请求标识
