@@ -12,7 +12,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "27.0.3" 
     defaultConfig {
-        applicationId "com.home.runmining"
+        applicationId "com.home.runmining1"
         minSdkVersion 16
         //noinspection GradleCompatible
         targetSdkVersion 28
