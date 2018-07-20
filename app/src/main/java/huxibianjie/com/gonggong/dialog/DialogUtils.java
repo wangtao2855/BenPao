@@ -56,6 +56,14 @@ public class DialogUtils {
         mDialog.getWindow().setAttributes(mParams);
     }
 
+
+
+    public void setBackLis() {
+        if (mDialog != null) {
+            mDialog.setCancelable(false);
+        }
+    }
+
     public void showDialog() {
         if (mDialog != null && !mDialog.isShowing()) {
             mDialog.show();

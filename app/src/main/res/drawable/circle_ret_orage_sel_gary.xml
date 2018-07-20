@@ -14,8 +14,8 @@
     <!-- 矩形的宽高 -->
 
     <gradient
-        android:endColor="#15000000"
-        android:startColor="#15000000" />
+        android:endColor="#3C4650"
+        android:startColor="#3C4650" />
     <!-- 矩形的内部颜色，这里设置成白色，即空心 -->
 
 </shape>

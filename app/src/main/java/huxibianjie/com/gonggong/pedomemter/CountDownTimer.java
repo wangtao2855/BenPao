@@ -4,104 +4,89 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 
+/**
+ * 倒计时定时器
+ * Created by lenovo on 2017/1/5.
+ */
+
 public abstract class CountDownTimer {
-	  
-    /**
-     * Millis since epoch when alarm should stop.
-     */
-    private final long mMillisInFuture;
- 
-    /**
-     * The interval in millis that the user receives callbacks
-     */
+    //多长时间计时器应该停止
+    private final long mMillisInFutrue;
+    //倒计时的时间间隔
     private final long mCountdownInterval;
- 
     private long mStopTimeInFuture;
- 
-    private boolean mCancelled = false;
- 
-    /**
-     * @param millisInFuture The number of millis in the future from the call
-     *   to {@link #start()} until the countdown is done and {@link #onFinish()}
-     *   is called.
-     * @param countDownInterval The interval along the way to receive
-     *   {@link #onTick(long)} callbacks.
-     */
-    public CountDownTimer(long millisInFuture, long countDownInterval) {
-        mMillisInFuture = millisInFuture;
-        mCountdownInterval = countDownInterval;
+    private boolean mCancelled=false;
+
+    public CountDownTimer(long millisInFutrue,long countdownInterval){
+        mMillisInFutrue=millisInFutrue;
+        mCountdownInterval=countdownInterval;
     }
- 
+
     /**
-     * Cancel the countdown.
-     *
-     * Do not call it from inside CountDownTimer threads
+     * 取消倒计时
+     * 不要从倒计时计时器线程中调用它
      */
-    public final void cancel() {
+    public final void cancel(){
         mHandler.removeMessages(MSG);
-        mCancelled = true;
+        mCancelled=true;
     }
- 
+
     /**
-     * Start the countdown.
+     * 开始倒计时
+     * @return
      */
-    public synchronized final CountDownTimer start() {
-        if (mMillisInFuture <= 0) {
+    public synchronized final CountDownTimer start(){
+        if(mMillisInFutrue<=0){
             onFinish();
             return this;
         }
-        mStopTimeInFuture = SystemClock.elapsedRealtime() + mMillisInFuture;
+        mStopTimeInFuture= SystemClock.elapsedRealtime()+mMillisInFutrue;
         mHandler.sendMessage(mHandler.obtainMessage(MSG));
-        mCancelled = false;
+        mCancelled=false;
         return this;
     }
- 
- 
+
     /**
-     * Callback fired on regular interval.
-     * @param millisUntilFinished The amount of time until finished.
+     * 根据固定时间间隔进行回调
+     * 在给定总的时间millisInFutrue内，每隔一个countdownInterval时间就会回调一次
+     * @param millisUntilFinished  结束之前的总时间
      */
     public abstract void onTick(long millisUntilFinished);
- 
+
     /**
-     * Callback fired when the time is up.
+     * 当计时器结束时调用的函数
      */
     public abstract void onFinish();
- 
- 
-    private static final int MSG = 1;
- 
- 
-    // handles counting down
-    private Handler mHandler = new Handler() {
- 
+
+    private static final int MSG=1;
+
+    private Handler mHandler=new Handler(){
         @Override
-        public void handleMessage(Message msg) {
- 
-            synchronized (CountDownTimer.this) {
-                final long millisLeft = mStopTimeInFuture - SystemClock.elapsedRealtime();
- 
-                if (millisLeft <= 0) {
+        public void handleMessage(Message msg){
+            synchronized (CountDownTimer.this){
+                final long millisLeft=mStopTimeInFuture- SystemClock.elapsedRealtime();
+
+                if(millisLeft<=0){
                     onFinish();
-                } else if (millisLeft < mCountdownInterval) {
-                    // no tick, just delay until done
-                    sendMessageDelayed(obtainMessage(MSG), millisLeft);
-                } else {
-                    long lastTickStart = SystemClock.elapsedRealtime();
+                }else if(millisLeft<mCountdownInterval){
+                    //当要完成的时间减去当前时间小于规定时间间隔时，不调用onTick(),只是等待结束
+                    sendMessageDelayed(obtainMessage(MSG),millisLeft);
+                }else{
+                    long lastTickStart= SystemClock.elapsedRealtime();
                     onTick(millisLeft);
- 
-                    // take into account user's onTick taking time to execute
-                    long delay = lastTickStart + mCountdownInterval - SystemClock.elapsedRealtime();
- 
-                    // special case: user's onTick took more than interval to
-                    // complete, skip to next interval
-                    while (delay < 0) delay += mCountdownInterval;
- 
-                    if (!mCancelled) {
-                        sendMessageDelayed(obtainMessage(MSG), delay);
+                    //考虑到用户执行onTick 占用的时间
+                    long delay=lastTickStart+mCountdownInterval- SystemClock.elapsedRealtime();
+
+                    //特殊情况：用户执行onTick的时间多于一个时间间隔，则跳到下一个时间间隔
+                    while(delay<0) delay+=mCountdownInterval;
+
+                    if(!mCancelled){
+                        sendMessageDelayed(obtainMessage(MSG),delay);
                     }
                 }
             }
         }
+
     };
+
 }

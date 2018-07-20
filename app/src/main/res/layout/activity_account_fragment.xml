@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#141829"
-    android:orientation="vertical"
-    tools:context="huxibianjie.com.gonggong.AccountActivity">
+    android:background="#122633"
+    tools:context="huxibianjie.com.gonggong.activity.AccountActivity">
 
 
     <LinearLayout
@@ -28,12 +27,13 @@
                 android:layout_marginStart="8dp"
                 android:src="@mipmap/icon_bacl_left" />
 
-            <huxibianjie.com.gonggong.util.RoundImageView
+            <huxibianjie.com.gonggong.util.CircleImageView
                 android:id="@+id/imageView"
-                android:layout_width="282px"
-                android:layout_height="282px"
+                android:layout_width="272px"
+                android:layout_height="272px"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="180px"
+                android:scaleType="fitXY"
                 android:src="@mipmap/none" />
 
 
@@ -61,20 +61,20 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageView"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="20dp"
                 android:text="登入/注册"
                 android:textColor="#FFFFFF"
                 android:textSize="30px" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="1000px"
-                android:layout_height="600px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="20px"
                 android:layout_marginRight="20px"
                 android:layout_marginTop="676px"
-                android:background="@color/item_foot_bg"
+                android:background="@drawable/circle_ret_orage_sel_gary"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -85,25 +85,28 @@
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:paddingTop="30px">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="46px"
-                            android:text="总资产"
+                            android:layout_marginTop="42px"
+                            android:text="收入DVE"
                             android:textColor="#FFFFFF"
                             android:textSize="38px" />
 
-                        <TextView
+                        <huxibianjie.com.gonggong.util.SingLeLineZoomTextView
+                            android:id="@+id/qian"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="116px"
-                            android:text="15400.22"
+                            android:layout_marginTop="106px"
+                            android:singleLine="true"
+                            android:text="0"
                             android:textColor="#00FBA5"
-                            android:textSize="78px"
+                            android:textSize="88px"
                             android:textStyle="bold" />
 
                         <TextView
@@ -111,11 +114,12 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="252px"
-                            android:text="数量"
+                            android:text="DVE"
                             android:textColor="#FFFFFF"
-                            android:textSize="38px" />
+                            android:textSize="32px" />
 
                         <ImageView
+                            android:id="@+id/shouru"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -123,36 +127,41 @@
                             android:paddingTop="42px"
                             android:src="@mipmap/icon_explain" />
                     </RelativeLayout>
+
                     <View
                         android:layout_width="1px"
-                        android:layout_height="300px"
-                        android:layout_marginTop="40px"
+                        android:layout_height="260px"
+                        android:layout_marginTop="20px"
                         android:alpha="0.4"
-                        android:background="#fff" />
+                        android:background="@color/white" />
 
                     <RelativeLayout
-
                         android:layout_width="0dp"
+
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:paddingTop="30px">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="46px"
-                            android:text="总资产"
+                            android:layout_marginTop="42px"
+                            android:text="价值"
                             android:textColor="#FFFFFF"
                             android:textSize="38px" />
 
                         <TextView
+                            android:id="@+id/qianRig"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="116px"
-                            android:text="15400.22"
+                            android:layout_marginTop="106px"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="0"
                             android:textColor="#00FBA5"
-                            android:textSize="78px"
+                            android:textSize="88px"
                             android:textStyle="bold" />
 
                         <TextView
@@ -160,24 +169,30 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="252px"
-                            android:text="数量"
+                            android:text="≈≈￥"
                             android:textColor="#FFFFFF"
-                            android:textSize="38px" />
+                            android:textSize="32px" />
 
                         <ImageView
+                            android:id="@+id/jiazhi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:paddingRight="31px"
                             android:paddingTop="42px"
                             android:src="@mipmap/icon_explain" />
+
+
                     </RelativeLayout>
                 </LinearLayout>
 
                 <View
-                    android:layout_width="1000px"
+                    android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:layout_marginTop="40px"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="16dp"
                     android:alpha="0.4"
                     android:background="#fff" />
 
@@ -190,11 +205,15 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
+                        android:layout_alignBottom="@+id/linearLayout2"
+                        android:layout_alignLeft="@+id/linearLayout2"
+                        android:layout_alignStart="@+id/linearLayout2"
+                        android:layout_marginBottom="30dp"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="1\nBTG"
+                        android:text="1\nDVE"
                         android:textColor="#78889A"
-                        android:textSize="46px"
+                        android:textSize="42px"
                         android:textStyle="bold" />
 
                     <TextView
@@ -204,52 +223,64 @@
                         android:gravity="center"
                         android:text="增益价值\n≈≈"
                         android:textColor="#78889A"
-                        android:textSize="22px" />
+                        android:textSize="38px" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="100000\nBTG"
+                        android:text="1.02\nY"
                         android:textColor="#78889A"
-                        android:textSize="46px"
+                        android:textSize="42px"
                         android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:paddingRight="31px"
-                        android:paddingTop="42px"
-                        android:src="@mipmap/icon_explain" />
 
                 </LinearLayout>
             </LinearLayout>
-
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="1000px"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
-            android:layout_marginTop="60px"
+            android:layout_marginTop="70px"
             android:background="@drawable/circle_ret_orage_sel_gary"
-            android:nestedScrollingEnabled="false" />
+            android:clickable="true"
+            android:clipChildren="true"
+            android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView1"
-            android:layout_width="1000px"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            android:layout_marginTop="40px"
-            android:background="@drawable/circle_ret_orage_sel_gary"
-            android:nestedScrollingEnabled="false" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="180px"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/recyclerview_hader_item_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="30px"
+                android:text="奔跑赚取"
+                android:textColor="#FFFFFF"
+                android:textSize="60px"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ExpandableListView
+                android:id="@+id/elListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/iv_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/elListView"
+                android:paddingBottom="30px"
+                android:paddingTop="28px"
+                android:src="@mipmap/icon_unfold"
+                android:visibility="gone" />
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -267,6 +298,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_yaoqing"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -274,20 +306,22 @@
                 android:layout_weight="1"
                 android:background="@mipmap/yaoqinghaoyou"
                 android:gravity="center"
-                android:text=" 邀请好友\n(暂未开启)"
+                android:text=" 邀请好友\n(火热进行中...)"
                 android:textColor="@color/white" />
 
             <TextView
+                android:id="@+id/tv_fenxiang"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40px"
                 android:layout_weight="1"
                 android:background="@mipmap/yaoqinghaoyou"
                 android:gravity="center"
-                android:text="分享\n(暂未开启)"
+                android:text="分享\n(火热进行中...)"
                 android:textColor="@color/white" />
 
             <TextView
+                android:id="@+id/tv_guanzhu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40px"
@@ -295,13 +329,13 @@
                 android:layout_weight="1"
                 android:background="@mipmap/yaoqinghaoyou"
                 android:gravity="center"
-                android:text=" 关注\n(暂未开启)"
+                android:text=" 关注\n(火热进行中...)"
                 android:textColor="@color/white" />
 
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="1000px"
+            android:layout_width="match_parent"
             android:layout_height="156px"
             android:layout_marginBottom="66px"
             android:layout_marginLeft="40px"

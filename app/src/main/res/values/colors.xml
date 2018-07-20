@@ -31,4 +31,10 @@
     <color name="item_hader_bg">#01c270</color>
     <color name="item_foot_bg">#32424d</color>
 
+    <color name="red">#48fa83</color>
+    <color name="yellow">#1c2631</color>
+    <color name="grey">#5A7E7F</color>
+
+    <color name="common">#eb621d</color>
+
 </resources>

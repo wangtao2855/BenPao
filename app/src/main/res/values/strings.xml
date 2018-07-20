@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">酷跑</string>
+    <string name="app_name">奔跑矿机</string>
+    <string name="msg1">行动力是根据用户的运动形式计算：\n原地运动＝10%计算，只计算1000步以内\n移动运动＝100%计算。\n最后计算等于总步数乘以运动力等于最后步数。\n防止作弊，将会用行动力判断。作弊用户将封停账号</string>
+    <string name="msg2">未上交易所token，是根据未来估值合算。在交易所token，是根据交易所区间价格来估算。\n具体价格根据市场判定与本平台无关，最终解释权归本平台所有。</string>
+    <string name="msg3">1步等于多少token，是根据投放项目方确定。\n 1步等于多少token，也取决于投放项目的数量，会根据总数量有所减少与浮动。</string>
+    <string name="msg4">所有DVE收入</string>
+    <string name="provider_name">com.home.runmining</string>
+    <string name="updateApkFile">wankuang</string>
 </resources>

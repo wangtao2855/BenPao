@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Gonggong.iml" filepath="$PROJECT_DIR$/Gonggong.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/奔跑矿机百度地图版本.iml" filepath="$PROJECT_DIR$/奔跑矿机百度地图版本.iml" />
     </modules>
   </component>
 </project>

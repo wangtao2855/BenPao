@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    android:layout_height="190px"
+    android:background="#0F1623"
+    android:orientation="vertical"
+    android:paddingLeft="40px"
+    android:paddingRight="40px">
+
+    <huxibianjie.com.gonggong.util.CircleImageView
+        android:id="@+id/user_head"
+        android:layout_width="144px"
+        android:layout_height="144px"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/none" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/user_head"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/ranking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="第1名"
+            android:textColor="@color/white"
+            android:textSize="40px"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Apart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30px"
+            android:drawableLeft="@mipmap/icon_location"
+            android:ellipsize="end"
+            android:maxLength="8"
+            android:paddingLeft="20px"
+            android:text="距离455米"
+            android:textColor="#596A76"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="550px"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Today_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:ellipsize="end"
+            android:maxLength="5"
+            android:text="1111"
+            android:textColor="#596A76"
+            android:textSize="52px"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Apart_walking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="15px"
+            android:text="步行"
+            android:textColor="#596A76"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Today_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:text="100000DVE"
+            android:textColor="#00FBA6"
+            android:textSize="52px"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15px"
+            android:paddingLeft="45px"
+            android:text="获币"
+            android:textColor="#596A76"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="#596A76" />
+
+</RelativeLayout>

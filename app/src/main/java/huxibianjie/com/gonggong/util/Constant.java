@@ -7,28 +7,6 @@ package huxibianjie.com.gonggong.util;
 public class Constant {
 
 
-    public static final String USER = "";
-
-    public static final class Config {
-
-        public static final int MSG_FROM_CLIENT = 0;
-        public static final int MSG_FROM_SERVER = 1;
-        public static final int REQUEST_SERVER = 2;
-
-        public static final String isStepServiceRunning = "isStepServiceRunning";
-        public static final String stopStepService = "stopStepService";
-        public static final String stepNum = "stepNum";
-        public static final String FILE_NAME = "config";
-    }
-
-    public static final String TAG = "BaiduTraceSDK_V3";
-
-    public static final int REQUEST_CODE = 1;
-
-    public static final int RESULT_CODE = 1;
-
-    public static final int DEFAULT_RADIUS_THRESHOLD = 0;
-
     public static final int PAGE_SIZE = 1000;
 
     /**
@@ -45,10 +23,49 @@ public class Constant {
      * 实时定位间隔(单位:秒)
      */
     public static final int LOC_INTERVAL = 2;
+    /**
+     * 币种选择
+     */
+    public static String MONEY = "DVE";
+    /**
+     * sp保存的缓存数据
+     */
+    public final static String USER = "userInfo";
+    /**
+     * 缓存的步数儿
+     */
+    public static final String STEPNUMBER = "stepnumber";
 
     /**
-     * 最后一次定位信息
+     * 缓存的里程
      */
-    public static final String LAST_LOCATION = "last_location";
-
+    public static final String DISTANCE = "distance";
+    /**
+     * 判断srever 计步器（不能停止）
+     */
+    public static boolean ISCLICK = false;
+    /**
+     * 保存TabLayout
+     */
+    public static final String TABLAOUT = "tabLayout";
+    /**
+     * Tablayout临时储存
+     */
+    public static boolean isTab = false;
+    /**
+     * 保存的头像地址，搞本地的
+     */
+    public static String REALPATHFROMURI = "";
+    /**
+     * 判断是否提交成功
+     */
+    public static String IsGOUP;
+    /**
+     * 第一次缓存系统计步器的步数儿。是为了让用户点击stop得到最新的数据 只是一个判断数据
+     */
+    public static final String ONESTEPNUMBER = "onestepnumber";
+    /**
+     * 每次第一次启动记步服务时是否从系统中获取了已有的步数记录 fasle就是需要清除步数了
+     */
+    public static boolean hasRecord = false;
 }

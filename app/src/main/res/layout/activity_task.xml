@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg"
     android:orientation="vertical">
 
-    <include layout="@layout/top_bar1"/>
-    <com.stx.xhb.xbanner.XBanner
-        android:id="@+id/xbanner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        app:AutoPlayTime="3000"
-        app:pointNormal="@drawable/shape_noraml"
-        app:pointSelect="@drawable/shape_selected"
-        app:pointsPosition="CENTER"
-        app:pageChangeDuration="1000"/>
-    <ImageView
-        android:id="@+id/image1"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:background="#FFF" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/image2"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginTop="15dp"
-        android:background="#FFF" />
+        <include layout="@layout/top_bar1" />
 
-    <ImageView
-        android:id="@+id/image3"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginTop="15dp"
-        android:background="#FFF" />
+        <com.stx.xhb.xbanner.XBanner
+            android:id="@+id/xbanner"
+            android:layout_width="match_parent"
+            android:layout_height="360px"
+            app:AutoPlayTime="3000"
+            app:pageChangeDuration="1000"
+            app:pointNormal="@drawable/shape_noraml"
+            app:pointSelect="@drawable/shape_selected"
+            app:pointsPosition="CENTER" />
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="200px"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerInside" />
+
+    </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>

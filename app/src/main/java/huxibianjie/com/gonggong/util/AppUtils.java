@@ -2,6 +2,7 @@ package huxibianjie.com.gonggong.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.View;
 import android.view.Window;
@@ -49,6 +50,21 @@ public class AppUtils {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
+    }
+
+    private static Context mContext;
+
+    public static void init(Context context) {
+        mContext = context;
+    }
+
+    public static Context getAppContext() {
+        return mContext;
+    }
+
+
+    public static Resources getResource() {
+        return mContext.getResources();
     }
 
     private static long lastClickTime;

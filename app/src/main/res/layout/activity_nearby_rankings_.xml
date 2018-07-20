@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_top1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#122633"
+    android:orientation="vertical"
+    tools:context="huxibianjie.com.gonggong.activity.NearbyRankingsActivity">
+
+    <include layout="@layout/tob_bar" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/Nearby_rankings_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

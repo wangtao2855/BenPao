@@ -20,11 +20,14 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import huxibianjie.com.gonggong.MyApplication;
 import huxibianjie.com.gonggong.bean.GetAuthCodeForACLoginBean;
-import huxibianjie.com.gonggong.bean.LiginBtnBean;
+import huxibianjie.com.gonggong.bean.LoginBtnBean;
 import huxibianjie.com.gonggong.net.UrlConstan;
 import huxibianjie.com.gonggong.util.APKVersionCodeUtils;
+import huxibianjie.com.gonggong.util.Constant;
 import huxibianjie.com.gonggong.util.CountDownTimerUtils;
+import huxibianjie.com.gonggong.util.SpUtil;
 import huxibianjie.com.gonggong.util.SystemUtil;
 import huxibianjie.com.gonggong.util.ToastUtils;
 
@@ -46,6 +49,7 @@ public class DialogLoginView extends View {
     Button bt_comple;
     private CountDownTimerUtils countDownTimer;
     private Gson gson = new Gson();
+
 
     public DialogLoginView(Context context) {
         super(context);
@@ -76,27 +80,31 @@ public class DialogLoginView extends View {
                 OkGo.post(UrlConstan.GETAUTHCODEFORACLOGIN).params(map).execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        GetAuthCodeForACLoginBean getAuthCodeForACLoginBean = gson.fromJson(response.body(), GetAuthCodeForACLoginBean.class);
-                        if (getAuthCodeForACLoginBean.getCode() == 0) {
-                            tv_yanzhengma.setClickable(false);
-                            countDownTimer.setMillisInFuture(60 * 1000);
-                            countDownTimer.setCountDownInterval(1000);
-                            countDownTimer.setFinishDelegate(new CountDownTimerUtils.FinishDelegate() {
-                                @Override
-                                public void onFinish() {
-                                    tv_yanzhengma.setText("重新获取");
-                                    tv_yanzhengma.setClickable(true);
-                                }
-                            });
-                            countDownTimer.setTickDelegate(new CountDownTimerUtils.TickDelegate() {
-                                @Override
-                                public void onTick(long pMillisUntilFinished) {
-                                    tv_yanzhengma.setText((pMillisUntilFinished / 1000) + "");
-                                }
-                            });
-                            countDownTimer.start();
+                        try {
+                            GetAuthCodeForACLoginBean getAuthCodeForACLoginBean = gson.fromJson(response.body(), GetAuthCodeForACLoginBean.class);
+                            if (getAuthCodeForACLoginBean.getCode() == 0) {
+                                tv_yanzhengma.setClickable(false);
+                                countDownTimer.setMillisInFuture(60 * 1000);
+                                countDownTimer.setCountDownInterval(1000);
+                                countDownTimer.setFinishDelegate(new CountDownTimerUtils.FinishDelegate() {
+                                    @Override
+                                    public void onFinish() {
+                                        tv_yanzhengma.setText("重新获取");
+                                        tv_yanzhengma.setClickable(true);
+                                    }
+                                });
+                                countDownTimer.setTickDelegate(new CountDownTimerUtils.TickDelegate() {
+                                    @Override
+                                    public void onTick(long pMillisUntilFinished) {
+                                        tv_yanzhengma.setText((pMillisUntilFinished / 1000) + "");
+                                    }
+                                });
+                                countDownTimer.start();
+                            }
+                            ToastUtils.showSingleToast(getAuthCodeForACLoginBean.getCodeMsg());
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                        ToastUtils.showSingleToast(getAuthCodeForACLoginBean.getCodeMsg());
                     }
                 });
                 break;
@@ -113,20 +121,41 @@ public class DialogLoginView extends View {
                 map1.put("versionCode", APKVersionCodeUtils.getVersionCode(context) + "");
                 map1.put("deviceToken", SystemUtil.getIMEI(context) + "");
                 map1.put("osVersion", SystemUtil.getSystemVersion() + "");
-                map1.put("isNeedVersionMsg", "true");
+                map1.put("isNeedVersionMsg", "false");
+
                 OkGo.post(UrlConstan.LOGIN).params(map1).execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        LiginBtnBean liginBtnBean = gson.fromJson(response.body(), LiginBtnBean.class);
-                        if (liginBtnBean.getCode() == 0) {
-                            DisDialog();
-                        } else {
+                        try {
+                            LoginBtnBean liginBtnBean = gson.fromJson(response.body(), LoginBtnBean.class);
+                            if (liginBtnBean.getCode() == 0) {
+                                SpUtil.getInstance().putObject(Constant.USER, liginBtnBean.getUserInfo());
+                                MyApplication.user = liginBtnBean.getUserInfo();
+                                SpUtil.getInstance().putObject(Constant.USER, MyApplication.user);
+                                DisDialog();
+                                //登入成功之后的回调
+                                if (a != null) {
+                                    a.c();
+                                }
+                            }
                             ToastUtils.showSingleToast(liginBtnBean.getCodeMsg());
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 });
                 break;
         }
+    }
+
+    private A a;
+
+    public interface A {
+        void c();
+    }
+
+    public void E(A a) {
+        this.a = a;
     }
 
     public void showDialog() {

@@ -1,20 +1,24 @@
 package huxibianjie.com.gonggong.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.home.runmining.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import huxibianjie.com.gonggong.activity.AccountDetailActivity;
+import huxibianjie.com.gonggong.bean.GetMyCoinBean;
 
 /**
  * Created by wangtao on 2018/6/11.
@@ -23,7 +27,7 @@ import butterknife.ButterKnife;
 public class MoneyAdapter extends RecyclerView.Adapter {
 
     private Context context;
-    private int NUMBER = 4;
+    private List<GetMyCoinBean.DatasBean> datas = new ArrayList<>();
 
     public MoneyAdapter(Context context) {
         this.context = context;
@@ -43,38 +47,24 @@ public class MoneyAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return NUMBER;
+        return datas.size();
+    }
+
+    public void bounData(List<GetMyCoinBean.DatasBean> datas) {
+        this.datas.clear();
+        this.datas.addAll(datas);
+        notifyDataSetChanged();
     }
 
     class MoneyViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv1)
         TextView tv1;
-        @BindView(R.id.tv2)
-        TextView tv2;
         @BindView(R.id.tv3)
         TextView tv3;
-        @BindView(R.id.tv4)
-        TextView tv4;
-        @BindView(R.id.tv5)
-        TextView tv5;
         @BindView(R.id.rl)
         RelativeLayout rl;
-        @BindView(R.id.im)
-        ImageView im;
-        @BindView(R.id.view_button)
-        View view_button;
-        @BindView(R.id.zongbushu)
-        View zongbushu;
-        @BindView(R.id.zongshichang)
-        View zongshichang;
-        @BindView(R.id.tv21)
-        View tv21;
         @BindView(R.id.BTC_text)
-        View BTC_text;
-        @BindView(R.id.rl1)
-        LinearLayout rl1;
-        @BindView(R.id.r12)
-        LinearLayout r12;
+        TextView BTC_text;
 
         public MoneyViewHolder(View inflate) {
             super(inflate);
@@ -82,58 +72,32 @@ public class MoneyAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(int position) {
-            if (position == 0) {
+            final GetMyCoinBean.DatasBean datasBean = datas.get(position);
+            if (TextUtils.isEmpty(datasBean.getCoinName())) {
                 tv3.setVisibility(View.GONE);
-                tv4.setVisibility(View.GONE);
-                tv5.setVisibility(View.VISIBLE);
-                im.setVisibility(View.GONE);
-                r12.setVisibility(View.GONE);
                 BTC_text.setVisibility(View.GONE);
-                zongshichang.setVisibility(View.GONE);
-                zongbushu.setVisibility(View.GONE);
-
+                tv1.setVisibility(View.VISIBLE);
                 rl.setBackgroundResource(R.drawable.recyclerview_hader_item_bg);
-            } else if (position == NUMBER - 1) {
-                rl.setBackgroundResource(R.drawable.recyclerview_foot_item_bg);
-                tv1.setVisibility(View.GONE);
-                tv2.setVisibility(View.GONE);
-                tv3.setVisibility(View.GONE);
-                tv4.setVisibility(View.GONE);
-                tv5.setVisibility(View.GONE);
-                rl1.setVisibility(View.GONE);
-                r12.setVisibility(View.GONE);
-
-                BTC_text.setVisibility(View.GONE);
-                zongshichang.setVisibility(View.GONE);
-                zongbushu.setVisibility(View.GONE);
-                tv21.setVisibility(View.GONE);
-                view_button.setBackgroundColor(Color.parseColor("#00000000"));
-                im.setVisibility(View.VISIBLE);
-
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 120);
+                rl.setLayoutParams(layoutParams);
             } else {
-                rl.setBackgroundColor(Color.parseColor("#32424d"));
+                rl.setBackgroundResource(0);
                 tv1.setVisibility(View.GONE);
                 tv3.setVisibility(View.VISIBLE);
-                tv4.setVisibility(View.VISIBLE);
-                tv5.setVisibility(View.GONE);
-                im.setVisibility(View.GONE);
-                rl1.setVisibility(View.GONE);
-//                r12.setVisibility(View.GONE);
                 BTC_text.setVisibility(View.VISIBLE);
-                zongshichang.setVisibility(View.VISIBLE);
-                zongbushu.setVisibility(View.VISIBLE);
-            }
-            im.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (NUMBER > 4) {
-                        NUMBER = 4;
-                    } else {
-                        NUMBER = 8;
+                BTC_text.setText(datasBean.getCoinName());
+                tv3.setText(datasBean.getCoin() + " 个"+datasBean.getCoinName());
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 120);
+                rl.setLayoutParams(layoutParams);
+                rl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, AccountDetailActivity.class);
+                        intent.putExtra("coinName", datasBean.getCoinName());
+                        context.startActivity(intent);
                     }
-                    notifyDataSetChanged();
-                }
-            });
+                });
+            }
         }
     }
 }

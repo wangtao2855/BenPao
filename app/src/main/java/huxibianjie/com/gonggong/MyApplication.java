@@ -16,12 +16,14 @@ import com.baidu.trace.model.BaseRequest;
 import com.baidu.trace.model.OnCustomAttributeListener;
 import com.baidu.trace.model.ProcessOption;
 import com.baidu.trace.model.TransportMode;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import huxibianjie.com.gonggong.bean.LiginBtnBean;
+import huxibianjie.com.gonggong.bean.UserInfoBean;
+import huxibianjie.com.gonggong.util.AppUtils;
 import huxibianjie.com.gonggong.util.CommonUtil;
 import huxibianjie.com.gonggong.util.NetUtil;
 import huxibianjie.com.gonggong.util.SpUtil;
@@ -33,7 +35,8 @@ import huxibianjie.com.gonggong.util.SpUtil;
 public class MyApplication extends Application {
 
     private static Context context;
-    public static LiginBtnBean.UserInfoBean user;
+
+    public static UserInfoBean user = null;
 
     private AtomicInteger mSequenceGenerator = new AtomicInteger();
 
@@ -55,7 +58,7 @@ public class MyApplication extends Application {
     /**
      * 轨迹服务ID
      */
-    public long serviceId = 201258;//这里是申请的鹰眼服务id
+    public long serviceId = 202039;//这里是申请的鹰眼服务id
 
     /**
      * Entity标识
@@ -72,12 +75,14 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        //bugly统计
+        CrashReport.initCrashReport(getApplicationContext(), "bdf45aa53f", false);
         entityName = CommonUtil.getImei(this);
         // 若为创建独立进程，则不初始化成员变量
         if ("com.baidu.track:remote".equals(CommonUtil.getCurProcessName(context))) {
             return;
         }
-
+        AppUtils.init(context);
         SDKInitializer.initialize(context);
         getScreenSize();
         initPrefs();
@@ -167,6 +172,7 @@ public class MyApplication extends Application {
         request.setTag(getTag());
         request.setServiceId(serviceId);
     }
+
     /**
      * 初始化SharedPreference
      */

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    android:layout_height="140px"
+    android:background="#999"
+    android:paddingLeft="30px"
+    android:paddingRight="30px">
+
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30px"
+        android:text="BTC"
+        android:textColor="@color/white"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="270px"
+        android:text="121213131"
+        android:textColor="#FFF"
+        android:textSize="38px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20px"
+        android:textColor="#FFF"
+        android:textSize="30px"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
