@@ -722,7 +722,7 @@ public class WalkingActivity extends AutoLayoutActivity implements SensorEventLi
         historyTrackRequest.setEntityName(trackApp.entityName);//Trace中的entityName
 
         /**
-         * 设置startTime和endTime，会请求这段时间内的轨迹数据;
+         * 设置startTime和endTime，会请求这段时间内的轨®迹数据;
          * 这里查询采集开始到采集结束之间的轨迹数据
          */
         historyTrackRequest.setStartTime(startTime);
